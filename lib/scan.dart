@@ -111,33 +111,42 @@ bool valide = false;
                            // print("first res :   "+res);
                             Map <String,dynamic> data = jsonDecode(res);
                             String name = data['dict']['firstName']+" "+data['dict']['lastName'];
-                            String name2 = data['words']['nomEtPrenom'][0]+" "+data['words']['nomEtPrenom'][1]+" " +data['words']['nomEtPrenom'][2];
+
+                            String name2 = data['words']['nomEtPrenom'][0]+" "+data['words']['nomEtPrenom'][1] ;
+                            String firstName = data['words']['nomEtPrenom'][0];
+                            String firstName1 = data['dict']['firstName'];
+
                             String cin1= data['dict']['idNumber'];
                             String cin2= data['words']['idNumber'];
                             String vaccintype1= data['words']['nomDeVaccin'];
                             String vaccintype2=data['dict']['vaccinType'];
-/*
+
                             print("Nom ="+name);
                             print("Nom2=" +name2);
                             print("CIN1="+cin1);
                             print("cin2="+cin2);
                             print("vaccintype1="+vaccintype1);
-                            print("vaccintype2="+vaccintype2);*/
-                            if(name==name2 && cin1==cin2 && vaccintype1==vaccintype2){
-                              
+                            print("vaccintype2="+vaccintype2);
+                            if( firstName1==firstName && cin1==cin2 && vaccintype1==vaccintype2){
+                              print("valide");
                               valide=true;
                             }
+                            else {valide=false;
+                            print("non valide");}
                             setState(() {
-                              if (valide=true){
+                              if (valide){
                                  textUpload="Hello, ";
-                                    nom="Nom et Prénom: "+name2;
+                                    nom="Nom et Prénom: "+name;
                                     cin="CIN: "+cin2;
                                     vacc="Vaccin: "+vaccintype1;
                                     size=180;
                                     imagePath1="Assets/success.png";
                               }
                               else{
-                                size=180;
+                                 nom="";
+                                    cin="";
+                                    vacc="";
+                                size=250;
                                     imagePath1="Assets/erreur.png";
                               }
                                    
